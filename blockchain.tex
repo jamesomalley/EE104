@@ -1,12 +1,16 @@
 \documentclass[12pt]{article}
 
+\usepackage[margin=1in]{geometry}
 \usepackage[bottom]{footmisc}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 
 \author{James O'Malley\\
 Tufts University, EE104 Fall 2023\\
 Medford, Massachusetts\\
 james.o\_malley$@$tufts.edu}
-\title{Probabilities on Blockchains\footnote{This paper is for informational purposes only. It is educational in nature and is not designed to be an offer or solicitation for the purchase or sale of any security, nor is it legal or tax advice. References to securities and strategies are for illustrative purposes only and do not constitute buy or sell recommendations. The information in this report should not be used as the basis for any investment decisions. At time of publishing, author held financial interest in ether (ETH).}}
+\title{Probabilities around the Block: Analyzing Probability of Transaction Success for Various Blockchain Protocols\footnote{This paper is for informational purposes only. It is educational in nature and is not designed to be an offer or solicitation for the purchase or sale of any security, nor is it legal or tax advice. References to securities and strategies are for illustrative purposes only and do not constitute buy or sell recommendations. The information in this report should not be used as the basis for any investment decisions. At time of publishing, author held financial interest in Ethereum (ETH) and Polygon (MATIC) .}}
 \date{December 8, 2022}
 
 
@@ -14,19 +18,49 @@ james.o\_malley$@$tufts.edu}
 
 \maketitle
 
-\textbf{Abstract:} This paper analyzes the probability of a successful transaction occuring on a number of different Layer 1 and Layer 2 blockchain technologies. Where data is available, the paper measures several conditional probabilities of a successful transaction given a variety of factors. Probability are measured over time to determine impact of major network upgrades on transaction success. It also explores the correlations between blockchain performance and price of the associated cryptocurrency tokens}
+\textbf{Abstract:} This paper analyzes the probability of a successful transaction occuring on a number of different blockchain protocols. Where data is available, the paper measures several conditional probabilities of a successful transaction given a variety of factors. Probability is measured over time to determine impact of major network upgrades on transaction success. It also explores the correlations between blockchain performance and price of the associated cryptocurrency tokens.\\
 
-\textbg{Keywords:} blockchain, probability
+\textbf{Keywords:} blockchain, probability, bernoulli
 
 %\footnote{fdsfd}
 \pagebreak
 
-\section{Abstract}
-fdsfsd
+\section{Introduction \includegraphics[scale=.075]{high-voltage-microsoft}}
+
+Though their associated cryptocurrency tokens are known by investors for volatile swings in price, the blockchain technology underlying these assets is intended to perform consistently regardless of price fluctuations [1]. A blockchain is a database of transactions that is updated and shared across many computers in a network [2]. 
+An in-depth discussion of blockchain technology is outside the scope of this paper, however, blockchains generally allow users to transact on a publicy available ledger to transfer digital assets, execute smart contracts, or store data [2]. The Bitcoin blockchain is arguably the first and most popular blockchain, however, many competitive technologies, such as Ethereum, Solana and Avalanche, have arisen since the publication of the initial Bitcoin white paper in 2008 [3].   
+
+Researchers have explored the probablistic nature of blockchains from a number of different angles, including the probablistic conditions of acheiving consensus on a blockchain, risk assessment using a blockchain protocol, network security using a probablistic model, and even a new method for validating transactions ("proof-of-probability")[5][6][7][8]. This paper will extend this research by comparing the probability of a successful transaction occurring across different blockchain protocols -- Bitcoin, Ethereum, Polygon, Solana, Avalanche, BNB, Gnosis and Optimism -- using data available from the protocols' public ledgers. 
+
+While the exact mechanics of specific blockchain technologies vary by network, transcations on a blockchain are verified by other network participants and will succeed or fail for a variety of reasons. For example, transactions on the Ethereum network can fail due too low of computational cost allocated to the transaction by the user (referred to as "out of gas"), the transaction was reverted by one of the transaction's counterparties, bad instructions within the smart contract executing the transaction, or a token transfer failure (e.g. insufficient balance) [4].
+
+This paper aims to compare the performance of various blockchain protocols by developing a model for the probability of transaction success and exploring statistical relationships betwen transaction success and asset price. It will begin by establishing a scope of analysis to identify which blockchain protocols are included in the analysis and how data is gathered. The next section will describe Bernoulli (\emph{p}) random variables and how they apply to understanding blockchain transaction success. The remainder of the research will compare the probability of transaction success across the blockchain protocols in scope and measure the correlation between transaction success and the price of the cryptocurrency tokens associated with each blockchain.
+
+\section{Scope of Analysis}
+
+\section{Bernoulli (\emph{p}) Random Variables}
+
+\section{Comparison of Blockchain Transaction Success Probabilities}
+
+\section{Correlation Between Transaction Success and Asset Price}
+
+\section{Conclusion}
+
+% One categorization of these blockchain technologies is as Layer-1 and Layer-2 solutions. A Layer-1 network refers to a blockchain (Bitcoin, Ethereum, Solana, etc.) while a Layer-2 protocol is a third-party integration that can be used in conjunction with an associated Layer-1 blockchain (e.g. Ethereum and its Layer-2 solution Polygon) [4].
 
 \pagebreak
 \section{Reference}
 \begin{enumerate}
-	\item S. Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System," https://bitcoin.org/bitcoin.pdf, 2008
+	\item Tyler Cowen. "Crypto's Values Comes From Crypto's Volatility." Bloomberg.com. https://www.bloomberg.com/opinion/articles/2022-06-02/how-should-we-value-crypto-by-how-volatile-crypto-assets-are, June 2, 2022 (accessed December 3, 2022)
+	\item Ethereum Foundation. "What Is Ethereum? | ethereum.org" Ethereum.org. \\https://ethereum.org/en/what-is-ethereum/ (accessed December 3, 2022).
+	\item Vinay Gupta. "A Brief History of Blockchain". Harvard Business Review. \\ https://hbr.org/2017/02/a-brief-history-of-blockchain (access December 3, 2022).
+%	\item S. Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System," https://bitcoin.org/bitcoin.pdf, 2008
+%	\item Cryptopedia Staff. "Layer-1 and Layer-2 Blockchain Scaling Solutions," https://www.gemini.com/cryptopedia/blockchain-layer-2-network-layer-1-network, March 8, 2022 (accessed December 3, 2022).
+	\item Kaven Choi. "What are the Reasons for Failed Transactions?" Etherscan.io.\\ https://info.etherscan.com/reason-for-failed-transaction/ (accesssed December 3, 2022).
+	\item Markinovic et al. "Probablistic Consensus of the Blockchain Protocol". \\ %https://home.inf.unibe.ch/$~tstuder/papers/20190614_probability_$blockchain.pdf 
+	\item T. Salman, R. Jain and L. Gupta, "Probabilistic Blockchains: A Blockchain Paradigm for Collaborative Decision-Making," 2018 9th IEEE Annual Ubiquitous Computing, Electronics \& Mobile Communication Conference (UEMCON), 2018, pp. 457-465, doi: 10.1109/UEMCON.2018.8796512.
+	\item K. Aiyar, M. N. Halgamuge and A. Mohammad, "Probability Distribution Model to Analyze the Trade-off between Scalability and Security of Sharding-Based Blockchain Networks," 2021 IEEE 18th Annual Consumer Communications \& Networking Conference (CCNC), 2021, pp. 1-6, doi: 10.1109/CCNC49032.2021.9369563.
+	\item Kim, Sungmin \& Kim, Joongheon. (2018). POSTER: Mining with Proof-of-Probability in Blockchain. 841-843. 10.1145/3196494.3201592. 
 	\item Dune Analytics AS. "Dune." Dune. https://dune.com/queries (accessed November, 2022)
+\end{enumerate}
 \end{document}
