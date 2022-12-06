@@ -1,3 +1,5 @@
+
+-- Failed transactions over time
 SELECT DATE_TRUNC('month', block_time) AS monthly, COUNT(value) AS count  from ethereum.transactions
 where success = False
 group by DATE_TRUNC('month', block_time)
