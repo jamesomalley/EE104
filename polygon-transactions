@@ -1,0 +1,11 @@
+--Total transactions over time
+SELECT DATE_TRUNC('month', block_time) AS monthly, COUNT(value) AS count  from polygon.transactions
+group by DATE_TRUNC('month', block_time)
+ORDER BY monthly DESC
+
+
+-- Failed transactions over time
+SELECT DATE_TRUNC('month', block_time) AS monthly, COUNT(value) AS count  from polygon.transactions
+where success = False
+group by DATE_TRUNC('month', block_time)
+ORDER BY monthly DESC
