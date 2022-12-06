@@ -1,0 +1,9 @@
+-- Total  transactions over time
+SELECT DATE_TRUNC('month', block_time) AS monthly, COUNT(id) AS count  from solana.transactions
+group by DATE_TRUNC('month', block_time)
+ORDER BY monthly DESC
+
+-- Total  transactions over time
+SELECT DATE_TRUNC('month', block_time) AS monthly, COUNT(id) AS count  from solana.transactions
+group by DATE_TRUNC('month', block_time)
+ORDER BY monthly DESC
