@@ -1,0 +1,4 @@
+SELECT DATE_TRUNC('month', block_time) AS monthly, COUNT(value) AS count  from ethereum.transactions
+where success = False
+group by DATE_TRUNC('month', block_time)
+ORDER BY monthly DESC
