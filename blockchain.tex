@@ -25,7 +25,7 @@ james.o\_malley$@$tufts.edu}
 %\footnote{fdsfd}
 \pagebreak
 
-\section{Introduction \includegraphics[scale=.075]{high-voltage-microsoft}}
+\section{Introduction}
 
 Though their associated cryptocurrency tokens are known by investors for volatile swings in price, the blockchain technology underlying these assets is intended to perform consistently regardless of price fluctuations [1]. A blockchain is a database of transactions that is updated and shared across many computers in a network [2]. 
 An in-depth discussion of blockchain technology is outside the scope of this paper, however, blockchains generally allow users to transact on a publicy available ledger to transfer digital assets, execute smart contracts, or store data [2]. The Bitcoin blockchain is arguably the first and most popular blockchain, however, many competitive technologies, such as Ethereum, Solana and Avalanche, have arisen since the publication of the initial Bitcoin white paper in 2008 [3].   
@@ -36,7 +36,23 @@ While the exact mechanics of specific blockchain technologies vary by network, t
 
 This paper aims to compare the performance of various blockchain protocols by developing a model for the probability of transaction success and exploring statistical relationships betwen transaction success and asset price. It will begin by establishing a scope of analysis to identify which blockchain protocols are included in the analysis and how data is gathered. The next section will describe Bernoulli (\emph{p}) random variables and how they apply to understanding blockchain transaction success. The remainder of the research will compare the probability of transaction success across the blockchain protocols in scope and measure the correlation between transaction success and the price of the cryptocurrency tokens associated with each blockchain.
 
-\section{Scope of Analysis}
+\section{Analysis Scope}
+The blockchains included in this analysis can be in Table 2.1 below. While the general goals of the various blockchains are similar -- allowing users to transact in permissionless and verified manner on a public ledger -- how their technology works differ based on their associated protocols.
+
+One categorization of these blockchain technologies is as Layer-1 and Layer-2 solutions. A Layer-1 network refers to a blockchain (Bitcoin, Ethereum, Solana, etc.) while a Layer-2 protocol is a third-party integration that can be used in conjunction with an associated Layer-1 blockchain (e.g. Ethereum and its Layer-2 solution Polygon) [4].
+
+\textbf{Table 2.1}\\
+\begin{tabular}{| c | c | c | c |}
+\hline
+Name & Token & Consensus Protocol & Notes\\
+\hline
+Bitcoin & Bitcoin (BTC) & Proof of Work & TBD\\
+Ethereum & Ether (ETH) & Proof of Stake & TBD\\
+Solana & SOL (SOL) & Proof of History & TBD\\
+Avalanche & Ave (AVAX) & TBD & TBD\\
+\hline
+\end{tabular}
+
 
 \section{Bernoulli (\emph{p}) Random Variables}
 
@@ -46,7 +62,7 @@ This paper aims to compare the performance of various blockchain protocols by de
 
 \section{Conclusion}
 
-% One categorization of these blockchain technologies is as Layer-1 and Layer-2 solutions. A Layer-1 network refers to a blockchain (Bitcoin, Ethereum, Solana, etc.) while a Layer-2 protocol is a third-party integration that can be used in conjunction with an associated Layer-1 blockchain (e.g. Ethereum and its Layer-2 solution Polygon) [4].
+
 
 \pagebreak
 \section{Reference}
@@ -61,6 +77,7 @@ This paper aims to compare the performance of various blockchain protocols by de
 	\item T. Salman, R. Jain and L. Gupta, "Probabilistic Blockchains: A Blockchain Paradigm for Collaborative Decision-Making," 2018 9th IEEE Annual Ubiquitous Computing, Electronics \& Mobile Communication Conference (UEMCON), 2018, pp. 457-465, doi: 10.1109/UEMCON.2018.8796512.
 	\item K. Aiyar, M. N. Halgamuge and A. Mohammad, "Probability Distribution Model to Analyze the Trade-off between Scalability and Security of Sharding-Based Blockchain Networks," 2021 IEEE 18th Annual Consumer Communications \& Networking Conference (CCNC), 2021, pp. 1-6, doi: 10.1109/CCNC49032.2021.9369563.
 	\item Kim, Sungmin \& Kim, Joongheon. (2018). POSTER: Mining with Proof-of-Probability in Blockchain. 841-843. 10.1145/3196494.3201592. 
+     \item Shijie Zhang, Jong-Hyouk Lee, Analysis of the main consensus protocols of blockchain, ICT Express, Volume 6, Issue 2, 2020, Pages 93-97, ISSN 2405-9595, \\https://doi.org/10.1016/j.icte.2019.08.001. \\(https://www.sciencedirect.com/science/article/pii/S240595951930164X)
 	\item Dune Analytics AS. "Dune." Dune. https://dune.com/queries (accessed November, 2022)
 \end{enumerate}
 \end{document}
