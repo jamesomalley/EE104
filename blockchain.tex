@@ -2,14 +2,21 @@
 
 \usepackage[margin=1in]{geometry}
 \usepackage[bottom]{footmisc}
-
+\usepackage{amsmath}
+\usepackage{hyperref}
 \usepackage{graphicx}
-\graphicspath{ {./images/} }
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    }
 
 \author{James O'Malley\\
 Tufts University, EE104 Fall 2023\\
 Medford, Massachusetts\\
-james.o\_malley$@$tufts.edu}
+james.o\_malley$@$tufts.edu\\
+\underline{\href{https://github.com/jamesomalley/EE104}{https://github.com/jamesomalley/EE104}}}
 \title{Probabilities around the Block: Analyzing Probability of Transaction Success for Various Blockchain Protocols\footnote{This paper is for informational purposes only. It is educational in nature and is not designed to be an offer or solicitation for the purchase or sale of any security, nor is it legal or tax advice. References to securities and strategies are for illustrative purposes only and do not constitute buy or sell recommendations. The information in this report should not be used as the basis for any investment decisions. At time of publishing, author held financial interest in Ethereum (ETH) and Polygon (MATIC) .}}
 \date{December 8, 2022}
 
@@ -30,33 +37,60 @@ james.o\_malley$@$tufts.edu}
 Though their associated cryptocurrency tokens are known by investors for volatile swings in price, the blockchain technology underlying these assets is intended to perform consistently regardless of price fluctuations [1]. A blockchain is a database of transactions that is updated and shared across many computers in a network [2]. 
 An in-depth discussion of blockchain technology is outside the scope of this paper, however, blockchains generally allow users to transact on a publicy available ledger to transfer digital assets, execute smart contracts, or store data [2]. The Bitcoin blockchain is arguably the first and most popular blockchain, however, many competitive technologies, such as Ethereum, Solana and Avalanche, have arisen since the publication of the initial Bitcoin white paper in 2008 [3].   
 
-Researchers have explored the probablistic nature of blockchains from a number of different angles, including the probablistic conditions of acheiving consensus on a blockchain, risk assessment using a blockchain protocol, network security using a probablistic model, and even a new method for validating transactions ("proof-of-probability")[5][6][7][8]. This paper will extend this research by comparing the probability of a successful transaction occurring across different blockchain protocols -- Bitcoin, Ethereum, Polygon, Solana, Avalanche, BNB, Gnosis and Optimism -- using data available from the protocols' public ledgers. 
+Researchers have explored the probablistic nature of blockchains from a number of different angles, including the probablistic conditions of acheiving consensus on a blockchain, risk assessment using a blockchain protocol, network security using a probablistic model, and even a new method for validating transactions ("proof-of-probability")[5][6][7][8]. This paper will extend this research by comparing the probability of a successful transaction occurring across different blockchain protocols -- Bitcoin, Ethereum, Polygon, Solana, and Avalanche -- using data available from the protocols' public ledgers. 
 
 While the exact mechanics of specific blockchain technologies vary by network, transcations on a blockchain are verified by other network participants and will succeed or fail for a variety of reasons. For example, transactions on the Ethereum network can fail due too low of computational cost allocated to the transaction by the user (referred to as "out of gas"), the transaction was reverted by one of the transaction's counterparties, bad instructions within the smart contract executing the transaction, or a token transfer failure (e.g. insufficient balance) [4].
 
-This paper aims to compare the performance of various blockchain protocols by developing a model for the probability of transaction success and exploring statistical relationships betwen transaction success and asset price. It will begin by establishing a scope of analysis to identify which blockchain protocols are included in the analysis and how data is gathered. The next section will describe Bernoulli (\emph{p}) random variables and how they apply to understanding blockchain transaction success. The remainder of the research will compare the probability of transaction success across the blockchain protocols in scope and measure the correlation between transaction success and the price of the cryptocurrency tokens associated with each blockchain.
+This paper aims to compare the performance of various blockchain protocols by developing a model for the probability of transaction success and exploring statistical relationships betwen transaction success and asset price. It will begin by establishing a scope of analysis to identify which blockchain protocols are included in the analysis and how data is gathered. The next section will describe how probability can be applied to understanding blockchain transaction success. The remainder of the research will compare the probability of transaction success across the blockchain protocols in scope and measure the correlation between transaction success and the price of the cryptocurrency tokens associated with each blockchain.
 
 \section{Analysis Scope}
-The blockchains included in this analysis can be in Table 2.1 below. While the general goals of the various blockchains are similar -- allowing users to transact in permissionless and verified manner on a public ledger -- how their technology works differ based on their associated protocols.
-
-One categorization of these blockchain technologies is as Layer-1 and Layer-2 solutions. A Layer-1 network refers to a blockchain (Bitcoin, Ethereum, Solana, etc.) while a Layer-2 protocol is a third-party integration that can be used in conjunction with an associated Layer-1 blockchain (e.g. Ethereum and its Layer-2 solution Polygon) [4].
-
+The blockchains included in this research are listed in Table 2.1 below. Table 2.1 includes several metrics intended to measure the popularity of each blockchain:
+\begin{itemize}
+	\item Market capitalization: the total USD (\$) value of all tokens on the blockchain [12]
+	\item Active addresses: number of unique addresses involved in a successful transaction as of November 30, 2022 [13] 
+	\item Transactions: how many unique transactions (\emph{n}) were included in probability calculations \\
+\end{itemize}
 \textbf{Table 2.1}\\
-\begin{tabular}{| c | c | c | c |}
+\begin{tabular}{| c | c | c | c | c |}
 \hline
-Name & Token & Consensus Protocol & Notes\\
+\textbf{Name} & \textbf{Token} & \textbf{Market Cap}[10] & \textbf{Active Addresses}[13][14][15] & \textbf{Transactions}[11] \\
 \hline
-Bitcoin & Bitcoin (BTC) & Proof of Work & TBD\\
-Ethereum & Ether (ETH) & Proof of Stake & TBD\\
-Solana & SOL (SOL) & Proof of History & TBD\\
-Avalanche & Ave (AVAX) & TBD & TBD\\
+Bitcoin & BTC & \$327.5B & 820K&773M\\
+Ethereum & ETH & \$15B & 374K&1.8B\\
+Solana & SOL & \$5.1B & 577k&26B\\
+Avalanche & AVAX & \$4.2B & 38K& 208M \\
+Polygon & MATIC & \$7.9B & 3K&2.3B\\
 \hline
-\end{tabular}
+\end{tabular}\\
+\\
+\par Transaction data was accessed using Dune Analytics for Ethereum, Solana, Avalanche and Poloygon blockchains and Statoshi.info for Bitcoin [11][15]. Dune Analytics aggregates raw blockchain transaction data and stores it in a SQL accessible table for querying. Statoshi.info provides an interactive web application of Bitcoin transactions, including whether a transaction was accepted or rejected. 
 
+While the date of the earliest transaction included in the analysis varies based on blockchain, all transaction data is through November 30, 2022.
 
-\section{Bernoulli (\emph{p}) Random Variables}
+More specifics of the underlying data collection and aggregation of this research paper, including the queries and datasets, can be found at \href{http://github.com/jamesomalley/EE104}{\underline{here}}.
+
+\section{Applying Probability to Blockchain Transactions}
+For a given blockchain, the probability of a successful transaction (\emph{S}) is a Bernoulli (\emph{p}) random variable. Bernoulli random variables apply to sequential experiments with independent trials in which each subexperiement has two possible outcomes[12]. Each attempted transaction can be considered a Bernoulli trial for which there is only two possible outcomes: success (\emph{s}=1) or failure (\emph{s}=0).
+
+As a Bernoulli random variable, the probability mass function (PMF) of a successful blockchain transaction can be expressed as:
+\[
+P_{S}(\emph{s}) =
+\begin{cases}
+1-\emph{p}&\text{\emph{s} =0}\\
+\emph{p}&\text{\emph{s}=1}\\
+0&\text{otherwise}\\
+\end{cases}
+\]
+where the parameter \emph{p} is in the range of 0$<\emph{p}<$1 [12].\\
+
+To calculate \emph{p} for each blockchain, \emph{t} = number of total successful transactions and \emph{n} = number of total attempted transactions. \emph{p} = P[\emph{S}] = \(\frac{t}{n}\).
+
+For example, to calculate the PMF of a successful transaction on the Avalanche blockchain following the methodology described in Section 2, \emph{t} = 
 
 \section{Comparison of Blockchain Transaction Success Probabilities}
+
+
+One categorization of these blockchain technologies is as Layer-1 and Layer-2 solutions. A Layer-1 network refers to a blockchain (Bitcoin, Ethereum, Solana, etc.) while a Layer-2 protocol is a third-party integration that can be used in conjunction with an associated Layer-1 blockchain (e.g. Ethereum and its Layer-2 solution Polygon) [X].
 
 \section{Correlation Between Transaction Success and Asset Price}
 
@@ -78,6 +112,13 @@ Avalanche & Ave (AVAX) & TBD & TBD\\
 	\item K. Aiyar, M. N. Halgamuge and A. Mohammad, "Probability Distribution Model to Analyze the Trade-off between Scalability and Security of Sharding-Based Blockchain Networks," 2021 IEEE 18th Annual Consumer Communications \& Networking Conference (CCNC), 2021, pp. 1-6, doi: 10.1109/CCNC49032.2021.9369563.
 	\item Kim, Sungmin \& Kim, Joongheon. (2018). POSTER: Mining with Proof-of-Probability in Blockchain. 841-843. 10.1145/3196494.3201592. 
      \item Shijie Zhang, Jong-Hyouk Lee, Analysis of the main consensus protocols of blockchain, ICT Express, Volume 6, Issue 2, 2020, Pages 93-97, ISSN 2405-9595, \\https://doi.org/10.1016/j.icte.2019.08.001. \\(https://www.sciencedirect.com/science/article/pii/S240595951930164X)
+	\item CoinMarketCap, https://coinmarketcap.com/ (access December 8, 2022).
 	\item Dune Analytics AS. "Dune." Dune. https://dune.com/queries (accessed November, 2022)
+	\item Yates, Roy D., and David J. Goodman. \emph{Probability and Stochastic Processes: a Friendly Introduction for Electrical and Computer Engeineers}. Third edition., John Wiley \& Sons, 2014.
+	\item DST Systems, Inc. "Understanding Market Capitalization". https://www.fidelity.com/learning-center/trading-investing/fundamental-analysis/understanding-market-capitalization
+	\item Glassnode https://studio.glassnode.com/metrics?a=BTC\&m=addresses.ActiveCount
+	\item Statoshi.info https://statoshi.info/d/000000006/transactions?orgId=1\&from=now%2Fy&to=now
+	\item Solscan https://analytics.solscan.io/
+	\item Avalanche https://subnets.avax.network/c-chain/stats?timespan999=ONE\_YEAR
 \end{enumerate}
 \end{document}
