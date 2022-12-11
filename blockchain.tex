@@ -55,7 +55,7 @@ The blockchains included in this research are listed in Table 2.1 below. Table 2
 \hline
 \textbf{Name} & \textbf{Token} & \textbf{Market Cap}[10] & \textbf{Active Addresses}[13][14][15] & \textbf{Transactions}[11] \\
 \hline
-Bitcoin & BTC & \$327.5B & 820K&773M\\
+Bitcoin  & BTC & \$327.5B & 820K&773M\\
 Ethereum & ETH & \$15B & 374K&1.8B\\
 Solana & SOL & \$5.1B & 577k&26B\\
 Avalanche & AVAX & \$4.2B & 38K& 208M \\
@@ -70,7 +70,7 @@ While the date of the earliest transaction included in the analysis varies based
 More specifics of the underlying data collection and aggregation of this research paper, including the queries and datasets, can be found at \href{http://github.com/jamesomalley/EE104}{\underline{here}}.
 
 \section{Applying Probability to Blockchain Transactions}
-For a given blockchain, the probability of a successful transaction (\emph{S}) is a Bernoulli (\emph{p}) random variable. Bernoulli random variables apply to sequential experiments with independent trials in which each subexperiement has two possible outcomes[12]. Each attempted transaction can be considered a Bernoulli trial for which there is only two possible outcomes: success (\emph{s}=1) or failure (\emph{s}=0).
+For a given blockchain, the probability of a successful transaction (\emph{S}) is a Bernoulli (\emph{p}) random variable. Bernoulli random variables apply to sequential experiments with independent trials in which each subexperiement has two possible outcomes[12]. Each attempted transaction can be considered a Bernoulli trial for which there is only two possible outcomes: success (\emph{s}=1) or failure (\emph{s}=0). 	
 
 As a Bernoulli random variable, the probability mass function (PMF) of a successful blockchain transaction can be expressed as:
 \[
@@ -83,12 +83,12 @@ P_{S}(\emph{s}) =
 \]
 where the parameter \emph{p} is in the range of 0$<\emph{p}<$1 [12].\\
 
-To calculate \emph{p} for each blockchain, \emph{t} = number of total successful transactions and \emph{n} = number of total attempted transactions. \emph{p} = P[\emph{S}] = \(\frac{t}{n}\).
+To calculate \emph{p} for each individual blockchain transaction, \emph{t} = number of total successful transactions and \emph{n} = number of total attempted transactions. \emph{p} = P[\emph{S}] = \(\frac{t}{n}\). 
 
-For example, to calculate the PMF of a successful transaction on the Avalanche blockchain following the methodology described in Section 2, \emph{t} = 
 
 \section{Comparison of Blockchain Transaction Success Probabilities}
 
+For example, to calculate the PMF of a successful transaction on the Avalanche blockchain following the methodology described in Section 2, \emph{t$_{BTC}$} = 
 
 One categorization of these blockchain technologies is as Layer-1 and Layer-2 solutions. A Layer-1 network refers to a blockchain (Bitcoin, Ethereum, Solana, etc.) while a Layer-2 protocol is a third-party integration that can be used in conjunction with an associated Layer-1 blockchain (e.g. Ethereum and its Layer-2 solution Polygon) [X].
 
